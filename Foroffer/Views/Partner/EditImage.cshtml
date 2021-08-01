@@ -1,0 +1,22 @@
+﻿@model Foroffer.Models.ViewModels.PartnerPostModel
+
+@{
+    Layout = "PartnerLayout";
+}
+
+<section class="buttonpanel">
+    <h5 style="font-weight:bold">Edit Image</h5>
+</section>
+
+<div class="image-container">
+    <form method="post" asp-action="EditImage" asp-controller="Partner" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" asp-for="Post.Id" />
+        <input type="hidden" asp-for="Post.Image" />
+        <label asp-for="PostImage.FileName">Upload Image</label>
+        <input asp-for="PostImage.FileName" class="forupload" type="file" name="file">
+        <br>
+        <button class="push" type="submit">Submit</button>
+    </form>
+</div>
+

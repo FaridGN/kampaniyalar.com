@@ -1,0 +1,236 @@
+﻿@model Foroffer.Models.ViewModels.SubViewModel
+
+@{
+    ViewData["Title"] = "Category";
+}
+
+<section class="subcat">
+    <div class="filters">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="subicons">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            Subkateqoriya
+                        </button>
+                        @foreach (Subcategory element in Model.Subcategories)
+                        {
+                            if (element.CategoryId == 7)
+                            {
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" asp-action="ClothSub" asp-controller="Home" asp-route-id="97">Hər kəsə</a>
+                                    <a class="dropdown-item" asp-action="ManCloth" asp-controller="Home">Kişi</a>
+                                    <a class="dropdown-item" asp-action="WomanCloth" asp-controller="Home">Qadın</a>
+                                    <a class="dropdown-item" asp-action="BabyCloth" asp-controller="Home">Uşaq</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    @foreach (Subcategory item in Model.Subcategories)
+                                    {
+                                        <a class="dropdown-item" asp-action="Subcategory" asp-controller="Home" asp-route-id="@item.Id">@item.Name</a>
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+               <button class="goback" onclick="goBack()" >Geri</button>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <p class="adsource">Mənbə: Şirkətlərin rəsmi veb və sosial media səhifələri</p>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</section>
+<section class="posts">
+    <div class="post-container">
+
+        @{
+            int n = 0;
+        }
+        @foreach (Post item in Model.Posts)
+        {
+            if (n % 4 == 0)
+            {
+                @:<div class="row">
+                }
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="post">
+                        <div class="heading">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                    <img class="postlogo" src="~/images/@item.Company.LogoPath">
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-8">
+                                    <div class="titles">
+                                        <p class="ptitle">@item.Company.Name</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="postcontent">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="uppart">
+                                        <h6>@item.Title</h6>
+                                    </div>
+                                    <div class="imgframe">
+                                        @if (item.URL != null)
+                                        {
+                                            <a href="@item.URL" target="_blank"><img class="postimg" src="~/images/@item.Image"></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Detailed" asp-controller="Detailed" asp-route-id="@item.Id" target="_blank"><img class="postimg" src="~/images/@item.Image"></a>
+                                        }
+                                    </div>
+                                    <div class="posttext">
+                                        <p>
+                                            @item.Description
+                                        </p>
+                                        <p class="formore">
+                                            <strong>Ətraflı:</strong>
+                                            @if (item.URL != null)
+                                            {
+                                                <a href="@item.URL" target="_blank">BURADA</a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-action="Detailed" asp-controller="Detailed" asp-route-id="@item.Id" target="_blank">BURADA</a>
+                                            }
+                                        </p>
+                                    </div>
+                                    <div class="dates">
+                                        <p class="postdate">Tarix: @item.CreatedDate.ToString("dd/MM/yyyy")</p>
+                                        @if (item.ExpirationDate.ToString("dd/MM/yyyy") == "01.01.2019" || item.ExpirationDate.ToString("dd/MM/yyyy") == "01/01/2019")
+                                        {
+                                            <p class="expdate">Bitme tarix: Naməlum</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="expdate">Bitme tarix: @item.ExpirationDate.ToString("dd/MM/yyyy") </p>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                if (n % 4 == 3)
+                {
+                @: </div>
+            }
+
+            n++;
+        }
+
+    </div>
+</section>
+<section class="mdposts">
+    <div class="post-container">
+
+        @{
+            int m = 0;
+        }
+        @foreach (Post item in Model.Posts)
+        {
+            if (m % 3 == 0)
+            {
+                @:<div class="row">
+                }
+                <div class="col-md-4">
+                    <div class="post">
+                        <div class="heading">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5 col-sm-4 col-4">
+                                    <img class="postlogo" src="~/images/@item.Company.LogoPath">
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-8 col-8">
+                                    <div class="titles">
+                                        <p class="ptitle">@item.Company.Name</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="postcontent">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="uppart">
+                                        <h6>@item.Title</h6>
+                                    </div>
+                                    <div class="imgframe">
+                                        @if (item.URL != null)
+                                        {
+                                            <a href="@item.URL" target="_blank"><img class="postimg" src="~/images/@item.Image"></a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Detailed" asp-controller="Detailed" asp-route-id="@item.Id" target="_blank"><img class="postimg" src="~/images/@item.Image"></a>
+                                        }
+                                    </div>
+                                    <div class="posttext">
+                                        <p>
+                                            @item.Description
+                                        </p>
+                                        <p class="formore">
+                                            <strong>Ətraflı:</strong>
+                                            @if (item.URL != null)
+                                            {
+                                                <a href="@item.URL" target="_blank">BURADA</a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-action="Detailed" asp-controller="Detailed" asp-route-id="@item.Id" target="_blank">BURADA</a>
+                                            }
+                                        </p>
+                                    </div>
+                                    <div class="dates">
+                                        <p class="postdate">Tarix: @item.CreatedDate.ToString("dd/MM/yyyy") </p>
+                                        @if (item.ExpirationDate.ToString("dd/MM/yyyy") == "01.01.2019" || item.ExpirationDate.ToString("dd/MM/yyyy") == "01/01/2019")
+                                        {
+                                            <p class="expdate">Bitme tarix: Naməlum</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="expdate">Bitme tarix: @item.ExpirationDate.ToString("dd/MM/yyyy") </p>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                if (m % 3 == 2)
+                {
+                @: </div>
+            }
+
+            m++;
+        }
+
+    </div>
+   
+    <p class="mobadsource">Mənbə: Şirkətlərin rəsmi veb və sosial media səhifələri</p>
+</section>
+
+@section Script{ 
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+}
+
+
+
+

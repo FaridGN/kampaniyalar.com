@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model Foroffer.Models.ViewModels.LoginModel
+
+<section class="posts">
+    <div class="post-container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="register">
+                    <form method="post" asp-action="LoginUser" asp-controller="Account">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <h6>Daxil ol</h6>
+                        <label asp-for="UserName" style="width: 100px" for="Username">İstifadəçi adı</label>
+                        <input asp-for="UserName" class="loginput" type="text"><br>
+                        <span asp-validation-for="UserName"></span>
+                        <label asp-for="Password" style="width: 100px" for="Password">Şifrə</label>
+                        <input asp-for="Password" class="loginput" type="password">
+                        <span asp-validation-for="Password"></span>
+                        <button class="enter">Daxil ol</button><br>
+                        <input asp-for="RememberMe" type="checkbox" name="remember"> Yadda saxla
+                    </form>
+                    <br>
+                    Hesabiniz yoxdur? <a asp-controller="Account" asp-action="RegisterUser">Qeydiyyatdan keçin</a>
+                    Don't have an account? <a asp-controller="Account" asp-action="RegisterUser">Register</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <!--
+                  <div class="post">
+                    <div class="heading">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                <img class="postlogo" src="~/images/newhun.png">
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
+                                <div class="titles">
+                                    <p class="ptitle"></p>
+                                    <p class="address"><b>Ünvan:</b> </p>
+                                    <a href="">
+                                        <p></p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="postcontent">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="uppart">
+                                    <h6></h6>
+                                </div>
+                                <img class="postimg" src="~/images/accent.png">
+                                <div class="posttext">
+                                    <p></p>
+                                    <p class="formore">
+                                        <strong></strong>
+                                        <a href=""></a>
+                                    </p>
+                                </div>
+                                <div class="dates">
+                                    <p class="postdate"></p>
+                                    <p class="expdate"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    -->
+
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+
+            </div>
+
+        </div>
+    </div>
+    <!--
+       <div class="mobcompanies">
+        <h6>Şirkət seçimi</h6>
+        <select>
+            <option class="choose">Avtosalonlar</option>
+            <option>Auto Azerbaijan</option>
+            <option>Improtex Motors</option>
+            <option>Kia Baku</option>
+            <option>Autolux</option>
+        </select>
+    </div>
+    -->
+
+</section>
+

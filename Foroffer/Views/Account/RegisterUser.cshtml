@@ -1,0 +1,49 @@
+﻿@model Foroffer.Models.ViewModels.RegisterModel
+
+<section class="posts">
+    <div class="post-container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="register">
+                    <form method="post" asp-action="RegisterUser" asp-controller="Account">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <h6 style="color: green"> @ViewBag.Alert</h6>
+                        <h6>Qeydiyyat</h6>
+                        <label asp-for="FullName" style="width: 100px" for="Username">Ad Soyad*</label>
+                        <input asp-for="FullName" class="loginput" type="text" value=""><br>
+                        <label asp-for="UserName" style="width: 100px" for="Username">İstifadəçi adı*</label>
+                        <input asp-for="UserName" class="loginput" type="text" value=""><br>
+                        <span asp-validation-for="UserName"></span>
+                        <label asp-for="Email" style="width: 100px" for="Email">E-mail*</label>
+                        <input asp-for="Email" class="loginput" type="email" value=""><br>
+                        <span asp-validation-for="Email"></span>
+                        <label asp-for="Password" style="width: 100px" for="Password">Şifrə*</label>
+                        <input asp-for="Password" class="loginput" type="password" value="">
+                        <span asp-validation-for="Password"></span>
+                        <button type="submit" id="regs" class="enter">Göndər</button><br>
+                        <p><b>Qeyd:</b> Şifrədə min 8 simvol(tərkibində rəqəm və kiçik hərf mütləqdir) yazılmalıdır.</p>
+                    </form>
+                </div>
+                <div class="allothers">
+                    <h6><strong>Əsas səhifəyə<a href="https://kampaniyalar.com/" style="text-decoration:underline"> DAXİL OL</a></strong></h6>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+               
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+               
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+
+            </div>         
+        </div>
+    </div>
+    <div class="mobcompanies">
+        
+    </div>
+</section>
+
+
+
+

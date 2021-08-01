@@ -1,0 +1,51 @@
+﻿@model Foroffer.Models.ViewModels.ContactViewModel
+
+@{ 
+    Layout = "OtherLayout";
+}
+
+<section class="contact">
+    <div class="row">
+        <div class="col-lg-4">
+            <h5 style="color: white">Bizimlə Əlaqə</h5>
+            <br />
+            <h6 style="color: white">@ViewBag.Message</h6>
+            <form method="get" asp-action="Contact" asp-controller="Contact">
+                <div asp-validation-summary="ModelOnly"></div>
+                <label asp-for="Name" style="width: 55px; color: white">Ad*</label>
+                <input asp-for="Name" type="text" class="myinfo" value="" />
+                <span asp-validation-for="Name"></span>
+                <br />
+                <label asp-for="Surname" style="width: 55px; color: white">Soyad*</label>
+                <input asp-for="Surname" type="text" name="surname" class="myinfo" />
+                <span asp-validation-for="Surname"></span>
+                <br />
+                <label asp-for="Email" style="width: 55px; color: white">Email*</label>
+                <input asp-for="Email" type="email" name="email" class="myinfo" />
+                <span asp-validation-for="Email"></span>
+                <br />
+                <label style="width: 55px; color: white">Telefon</label>
+                <input type="text" class="myinfo" /><br />
+                <label asp-for="Message" style="color: white">Mesaj</label><br />
+                <textarea asp-for="Message" class="myinfo" style="margin-left: 58px; width:168px" rows="4"></textarea>
+                <span asp-validation-for="Message"></span>
+                <br />
+                <input type="submit" value="Göndər" />
+            </form>
+            <br />
+            <a asp-action="Index" asp-controller="Home"><h5 style="color: white">Əsas səhifəyə qayıt</h5></a>
+        </div>
+        <div class="col-lg-4">
+            <div class="contact-info">
+                <h5>Ünvan</h5>
+                <p> 203 Nizami St, Baku 1010</p>
+                <p>AF Business House</p>
+                <h5>Əlaqə</h5>
+                <p>(051) 996 00 77</p>
+                <p>info@kampaniyalar.com</p>
+                <p>support@kampaniyalar.com</p>
+            </div> 
+        </div>
+    </div>
+    
+</section>

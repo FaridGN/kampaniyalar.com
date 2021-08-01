@@ -1,0 +1,161 @@
+﻿@model Foroffer.Models.ViewModels.DetailedViewModel
+
+<section class="detailed">
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+            <div class="posttitle">
+                <h5>@Model.Post.Title</h5>
+            </div>
+            <div class="features">
+                <div class="prodesc">
+                    <p>
+                        @Html.Raw(Model.Detailed.Outline)
+                    </p>
+                </div>
+                <div class="keyvalues">
+                    <table>
+                        <thead>
+                            <tr>
+                                @if (Model.Detailed.Features.Count() > 0)
+                                {
+                                    <th style="color: white">Xüsusiyyət</th>
+                                    <th style="color: white">Göstərici</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Feature element in Model.Detailed.Features)
+                            {
+                                <tr>
+                                    <td style="color: white">@element.Name</td>
+                                    <td style="color: white">@element.Parameter</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br />
+            <br />
+            <h6 style="color: white">Baxış sayı: @Model.Detailed.ViewCount</h6>
+            @if (Model.Detailed.Post.ExpirationDate.ToString("dd/MM/yyyy") == "01.01.2021" || Model.Detailed.Post.ExpirationDate.ToString("dd/MM/yyyy") == "01.01.2019")
+            {
+                <p style="color: white"><b>Bitmə tarixi:</b> Məlum deyil</p>
+            }
+            else
+            {
+                <p style="color: white"><b>Bitmə tarixi:</b> @Model.Post.ExpirationDate.ToString("dd/MM/yyyy")</p>
+            }
+            <div class="allothers">
+                <h6><strong>Bütün növ təkliflər <a href="https://kampaniyalar.com/" target="_blank" style="text-decoration:underline">BURADA</a></strong></h6>
+            </div>
+
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="picrow">
+                <div class="column">
+                    <img src="~/images/@Model.Post.Image" onclick="openModal();currentSlide(1)" class="bigone">
+                </div>
+            </div>
+            <br>
+            <div class="specialcont">
+                @{
+                    int x = 0;
+                    int y = 2;
+                }
+
+                <div class="picrow">
+                    @foreach (Picture item in Model.Detailed.Pictures)
+                    {
+                        if (x % 2 == 0)
+                        {
+                            <div class="column">
+                                <img src="~/images/@item.PicPath" onclick="openModal();currentSlide(@y)" class="hover-shadow">
+                            </div>
+                        }
+                        else if (x % 2 == 1)
+                        {
+                            <div class="column">
+                                <img src="~/images/@item.PicPath" onclick="openModal();currentSlide(@y)" class="hover-shadow">
+                            </div>
+                            <br />
+                        }
+                        else
+                        {
+
+                        }
+
+                        x++;
+                        y++;
+
+                    }
+                </div>                           
+        </div>
+
+            <!-- The Modal/Lightbox -->
+            <div id="myModal" class="modal">
+                <span class="close cursor" onclick="closeModal()">&times;</span>
+                <div class="modal-content">
+                    <div class="mySlides">
+                        <img src="~/images/@Model.Post.Image">
+                    </div>
+                    @foreach (Picture item in Model.Detailed.Pictures)
+                    {
+                        <div class="mySlides">
+                            <img src="~/images/@item.PicPath">
+                        </div>
+                    }
+
+                    <!-- Next/previous controls -->
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="companyinfo">
+                <div class="comptitle">
+                    <img src="~/images/@Model.Post.Company.LogoPath" class="complogo">
+                    <h4>@Model.Post.Company.Name</h4>
+                </div>
+                
+                @{
+                    var startdate = new DateTime(2020, 09, 25);
+                }
+
+                @if (Model.Post.CreatedDate > startdate)
+                {
+                    <p style="color: white">
+                        @Html.Raw(Model.Post.Company.About)
+                    </p>
+                }
+                else
+                {
+                    <p style="color:white">
+                        @Html.Raw(Model.Detailed.CompanyInfo)
+                    </p>
+                }
+
+                <p style="color: white">
+                    @if (Model.Post.Company.Address != null)
+                    {
+                        <b>Ünvan</b><br />
+                        @Html.Raw(Model.Post.Company.Address)
+                    }
+                </p>
+                <p style="color:white">
+                    @if (Model.Post.Company.MoreLink != null)
+                    {
+                        <b>Əlaqə</b><br />
+                        @Html.Raw(Model.Post.Company.MoreLink)
+                    }
+
+                </p>
+            </div>
+            <div class="allmob">
+                <h6><strong>Bütün növ təkliflər <a href="https://kampaniyalar.com/" target="_blank" style="text-decoration:underline">BURADA</a></strong></h6>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,196 @@
+﻿@using System.Threading
+@using Foroffer
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Farid Gulmammadov">
+    <meta name="description" content="endirim kampaniya">
+    <meta name="keywords" content="endirim kampaniya">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="myProjects/webProject/icofont/css/icofont.min.css">
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/css/substyle.css" asp-append-version="true" />
+    <title>Kampaniyalar</title>
+    <link rel="icon" type="image/png" href="~/images/iconumuz.png" />
+</head>
+
+<body>
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="navbar resetrow">
+                    <div class="firstpart">
+                        <div id="logo">
+                            <a href="https://kampaniyalar.com/"><img src="~/images/logokampaniya.png"></a>
+                        </div>
+                        <div id="searchbar">
+                            <form method="get" asp-action="Search" asp-controller="Home">
+                                <input id="search" type="text" name="keyword" value="@ViewBag.keyword" placeholder="Axtar">
+                                <button id="searchbtn">
+                                    <img src="~/images/axt.png" />
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="secondpart">
+                        @await Component.InvokeAsync("Menu")
+                        <div class="langlog">
+                            @await Html.PartialAsync("_LangPartial")
+                            <div class="login">
+                                <img src="~/images/olog.png" />
+                            </div>
+                            @await Html.PartialAsync("_LoginPartial")
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </section>
+                <div class="clear"></div>
+                <div id="mobsearchbar">
+                    <form id="sform" method="get" asp-action="Search" asp-controller="Home">
+                        <input id="mobsearch" type="text" name="keyword" value="@ViewBag.keyword" placeholder="Axtar">
+                        <button id="mobsearchbtn">
+                            <div id="si">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--end of navbar-->
+        @RenderBody()
+        <!--start of footer-->
+        <footer class="foot-container">
+            <div class="row fullfoot">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="menuinfo">
+                        <h6>@SharedLocalizer["Bizə yaxın ol"] </h6>
+                        <ul class="footinfo">
+                            <li>
+                                <a asp-action="RegisterUser" asp-controller="Account">@SharedLocalizer["Qeydiyyat"]</a>
+                            </li>
+                            <li>
+                                <a asp-action="LoginUser" asp-controller="Account">@SharedLocalizer["Daxil ol"]</a>
+                            </li>
+                            <li>
+                                <a asp-action="Contact" asp-controller="Contact">@SharedLocalizer["Əlaqə"]</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="menuinfo">
+                        <h6>@SharedLocalizer["Partnyorluq"]</h6>
+                        <ul class="partners">
+                            <li>
+                                <a asp-action="PostRequest" asp-controller="Account">@SharedLocalizer["Müraciət"]</a>
+                            </li>
+                            <li>
+                                <a href="">@SharedLocalizer["Daxil ol"]</a>
+                            </li>
+                            <li>
+                                <a asp-action="PostRequest" asp-controller="Account"> @SharedLocalizer["Əməkdaşlıq şərtləri"]</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="menuinfo">
+                        <h6>kampaniyalar.com</h6>
+                        <ul class="about">
+                            <li>
+                                <a asp-action="About" asp-controller="Home">@SharedLocalizer["Haqqımızda"]</a>
+                            </li>
+                            <li>
+                                <a asp-action="PrivaPolicy" asp-controller="Account">@SharedLocalizer["Məxfilik siyasəti"]</a>
+                            </li>
+                            <li>
+                                <div class="webstats">
+                                    <a href='https://free-hit-counters.net/'>Free Hit Counters</a>
+                                    <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=37a6dc953a8243b87f740326764f5cd77f546c24'></script>
+                                    <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/732575/t/3"></script>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="menuinfo">
+                        <ul class="footinfo">
+                            <li class="social">
+                                <a href="https://www.facebook.com/kampaniyalarcom-1440194162862225/">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="social">
+                                <a href="https://twitter.com/KampaniyalarC">
+                                    <i class="fab fa-twitter-square"></i>
+                                </a>
+                            </li>
+                            <li class="social">
+                                <a href="https://www.instagram.com/kampaniyalar.com_/?fbclid=IwAR0NLJZRI4mEhwCHU6DOdFLjp3TWEwxgzk92_cE0sf0NZEO-wpitICL7K4A">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <!--
+        <img id="footimg" src="~/images/iconumuz.png" />
+    -->
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <!-- Begin Web-Stat code v 7.0 -->
+    <div class="allstats">
+        <span id="wts2064096"></span>
+        <script>
+            var wts = document.createElement('script'); wts.async = true;
+            wts.src = 'https://app.wts2.one/log7.js'; document.head.appendChild(wts);
+            wts.onload = function () { wtslog7(2064096, 2); };
+        </script><noscript>
+            <a href="https://www.web-stat.com">
+                <img src="https://app.wts2.one/7/2/2064096.png"
+                     alt="Web-Stat traffic analysis">
+            </a>
+        </noscript>
+    </div>
+    
+    <!-- End Web-Stat code v 7.0 -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/script.js"></script>
+    <script src="~/js/posted.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+
+    @RenderSection("Script", false)
+
+</body>
+
+</html>
